@@ -5,16 +5,15 @@
       color="primary" 
       height="50" 
       style="-webkit-app-region: drag">
-      <v-app-bar-title>alba-play</v-app-bar-title>
+      <v-app-bar-title><v-icon>mdi-eye</v-icon>alba-play</v-app-bar-title>
       
       <v-spacer></v-spacer>
       
       <v-btn 
-        @click="toggleTheme" 
-        icon 
+        @click="toggleTheme"
         size="small"
         style="-webkit-app-region: no-drag">
-        <v-icon>{{ isDark ? 'mdi-lightbulb' : 'mdi-eye' }}</v-icon>
+        <v-icon>{{ isDark ? 'mdi-eye' : 'mdi-eye' }}</v-icon>
       </v-btn>
     </v-app-bar>
 
