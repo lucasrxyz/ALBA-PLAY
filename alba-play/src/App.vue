@@ -1,13 +1,26 @@
 <template>
   <v-app>
+    <v-app-bar 
+      density="compact" 
+      color="primary" 
+      height="50" 
+      style="-webkit-app-region: drag">
+      <v-app-bar-title>alba-play</v-app-bar-title>
+      
+      <v-spacer></v-spacer>
+      
+      <v-btn 
+        @click="toggleTheme" 
+        icon 
+        size="small"
+        style="-webkit-app-region: no-drag">
+        <v-icon>{{ isDark ? 'mdi-lightbulb' : 'mdi-eye' }}</v-icon>
+      </v-btn>
+    </v-app-bar>
+
     <v-main>
-      <v-container class="text-center">
-        <v-btn
-          class="text-none"
-          color="primary"
-          @click="toggleTheme">
-          Switch to {{ isDark ? 'Light' : 'Dark' }} mode
-        </v-btn>
+      <v-container>
+        <router-view></router-view>
       </v-container>
     </v-main>
   </v-app>
@@ -18,7 +31,6 @@ import { computed } from 'vue'
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()
-
 const isDark = computed(() => theme.global.current.value.dark)
 
 function toggleTheme() {

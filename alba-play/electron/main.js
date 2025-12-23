@@ -9,6 +9,8 @@ function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
     height: 720,
+    frame: false,
+    titleBarStyle: 'hidden'
   })
 
   if (process.env.VITE_DEV_SERVER_URL) {
