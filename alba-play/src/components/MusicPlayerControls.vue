@@ -7,8 +7,9 @@
           <v-img
             :src="currentSong.thumbnail"
             width="500"
+            cover
             height="500"
-            class="ma-0 pa-0"
+            class="ma-2 pa-0"
           ></v-img>
         </v-col>
 
