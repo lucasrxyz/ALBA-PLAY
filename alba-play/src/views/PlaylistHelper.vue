@@ -110,7 +110,7 @@
         </v-card>
 
         <!-- Liste des musiques de la playlist -->
-        <v-card v-if="selectedPlaylist">
+        <v-card class="elevation-0 rounded-0" v-if="selectedPlaylist">
           <v-card-title>
             <v-icon left>mdi-music-note</v-icon>
             {{ selectedPlaylist.name }}
@@ -174,7 +174,7 @@
           @next="playNext"
           @play-index="playSongByIndex"
           @stop="stopPlayback"
-          class="mt-4"
+          class="mt-4 rounded-0 elevation-0"
         />
       </v-col>
     </v-row>

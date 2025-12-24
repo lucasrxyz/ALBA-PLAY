@@ -3,12 +3,12 @@
       <!-- Info de la musique actuelle -->
       <v-row>
 
-        <v-col cols="5">
+        <v-col cols="4">
           <v-img
             :src="currentSong.thumbnail"
-            width="500"
-            cover
-            height="500"
+            :width="400"
+            aspect-ratio="1/1"
+            cover       
             class="ma-2 pa-0"
           ></v-img>
         </v-col>
