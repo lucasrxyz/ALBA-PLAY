@@ -1,27 +1,8 @@
 <template>
   <v-card v-if="currentSong" class="music-player">
-      <!-- Info de la musique actuelle -->
-      <v-row>
-
-        <v-col cols="4">
-          <v-img
-            :src="currentSong.thumbnail"
-            :width="400"
-            aspect-ratio="1/1"
-            cover       
-            class="ma-2 pa-0"
-          ></v-img>
-        </v-col>
-
-        <v-col cols="5" class="mt-15">
-          <div class="opacity-50 mb-15" style="font-size:16px;">En cours de lecture</div>
-          <div class="text-h4">{{ currentSong.title }}</div>
-          <div class="text-h6 opacity-50">{{ currentSong.author }}</div>
-        </v-col>
-      </v-row>
 
       <!-- Lecteur YouTube (audio seulement) -->
-      <div class="audio-player mb-4">
+      <!-- <div class="audio-player mb-4">
         <iframe
           ref="youtubePlayer"
           :src="playerUrl"
@@ -30,12 +11,18 @@
           frameborder="0"
           allow="autoplay"
           style="display: none;"
-        ></iframe>
-      </div>
+        ></iframe>é
+      </div> -->
 
       <!-- Contrôles de lecture -->
       <v-row justify="center" align="center" class="controls-row">
-
+      
+        <div class="text-center">
+          <span>{{ currentSong.title }}</span><br/>
+          <span class="text-caption ma-0 pa-0">{{ currentSong.author }}</span>
+        </div>
+      
+        <v-col cols="12" class="d-flex justify-center align-center">      
           <v-btn
             icon
             class="rounded-0 elevation-0"
@@ -46,6 +33,7 @@
           >
             <v-icon>mdi-rewind-10</v-icon>
           </v-btn>
+
           <v-btn
             icon
             class="rounded-0 elevation-0"
@@ -56,6 +44,7 @@
           >
             <v-icon>mdi-skip-previous</v-icon>
           </v-btn>
+
           <v-btn
             icon
             class="rounded-0 elevation-0"
@@ -66,6 +55,7 @@
           >
             <v-icon size="30">{{ isPlaying ? 'mdi-pause' : 'mdi-play' }}</v-icon>
           </v-btn>
+        
           <v-btn
             icon
             class="rounded-0 elevation-0"
@@ -76,6 +66,7 @@
           >
             <v-icon>mdi-skip-next</v-icon>
           </v-btn>
+        
           <v-btn
             icon
             class="rounded-0 elevation-0"
@@ -86,64 +77,25 @@
           >
             <v-icon>mdi-fast-forward-10</v-icon>
           </v-btn>
-          
-          <v-col cols="12" class="ma-0 mt-2 pa-0">
-            <!-- Barre de progression de la musique -->
-            <div>
-              <v-progress-linear
-                :model-value="songProgress"
-                color="primary"
-                height="1"
-                style="cursor: pointer;"
-                @click="seekTo"
-              ></v-progress-linear>
-              <div class="d-flex justify-space-between text-caption">
-                <span class="pl-1 pr-1">{{ formatTime(currentTime) }}</span>
-                <span class="pl-1 pr-1">{{ formatTime(duration) }}</span>
-              </div>
-            </div>
-          </v-col>
-          
-      </v-row>
-
-      <!-- Options supplémentaires -->
-      <v-row justify="center" class="mt-2">
-        <v-col cols="auto">
-          <v-btn
-            icon
-            size="small"
-            @click="toggleRepeat"
-            :color="repeatMode !== 'off' ? 'primary' : ''"
-          >
-            <v-icon>{{ repeatIcon }}</v-icon>
-          </v-btn>
         </v-col>
+        
+        <!-- Barre de progression -->
+        <v-col cols="12" class="ma-0 mt-2 pa-0">     
 
-        <v-col cols="auto">
-          <v-btn
-            icon
-            size="small"
-            @click="toggleShuffle"
-            :color="isShuffle ? 'primary' : ''"
-          >
-            <v-icon>mdi-shuffle</v-icon>
-          </v-btn>
-        </v-col>
+          <v-progress-linear
+            :model-value="songProgress"
+            color="primary"
+            height="1"
+            style="cursor: pointer;"
+            @click="seekTo"
+          />
+          <div class="d-flex justify-space-between text-caption">
+            <span class="pl-1 pr-1">{{ formatTime(currentTime) }}</span>
+            <span class="pl-1 pr-1">{{ formatTime(duration) }}</span>
+          </div>
 
-        <v-col cols="auto">
-          <v-btn
-            icon
-            size="small"
-            @click="stopPlayback"
-            color="error"
-          >
-            <v-icon>mdi-stop</v-icon>
-          </v-btn>
         </v-col>
       </v-row>
-
-      
-
       <!-- Info playlist -->
       <div class="text-center text-caption mt-2 text-grey">
         Musique {{ currentIndex + 1 }} / {{ totalSongs }}
@@ -420,6 +372,10 @@ export default {
 .controls-row {
   background: rgba(255, 255, 255, 0.05);
   padding-top: 10px;
+  margin: 0;
+}
+.infos-row {
+  background: rgba(255, 255, 255, 0.05);
   margin: 0;
 }
 </style>

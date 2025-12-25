@@ -1,6 +1,24 @@
 <template>
   <v-container>
     <v-row>
+
+        <v-col cols="12">
+            <!-- Lecteur avec contrôles -->
+            <MusicPlayerControls
+                v-if="currentSong"
+                :current-song="currentSong"
+                :playlist="selectedPlaylist?.songs || []"
+                :current-index="currentSongIndex"
+                @previous="playPrevious"
+                @next="playNext"
+                @play-index="playSongByIndex"
+                @stop="stopPlayback"
+                class="mt-4 rounded-0 elevation-0"
+            />
+        </v-col>
+    </v-row>
+
+    <v-row>
       <!-- Sidebar des playlists -->
       <v-col cols="12" md="3">
         <v-card>
@@ -164,18 +182,7 @@
           </v-card-text>
         </v-card>
 
-        <!-- Lecteur avec contrôles -->
-        <MusicPlayerControls
-          v-if="currentSong"
-          :current-song="currentSong"
-          :playlist="selectedPlaylist?.songs || []"
-          :current-index="currentSongIndex"
-          @previous="playPrevious"
-          @next="playNext"
-          @play-index="playSongByIndex"
-          @stop="stopPlayback"
-          class="mt-4 rounded-0 elevation-0"
-        />
+        
       </v-col>
     </v-row>
 
